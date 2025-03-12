@@ -1,0 +1,8 @@
+<h3>Simple Heatmap</h3>
+<div class="heatmap">
+  <div *ngFor="let day of heatmapData" 
+       class="heatmap-cell"
+       [style.backgroundColor]="getHeatmapColor(day.value)">
+    {{ day.date }}
+  </div>
+</div>
