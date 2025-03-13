@@ -1,8 +1,17 @@
-<h3>Simple Heatmap</h3>
-<div class="heatmap">
-  <div *ngFor="let day of heatmapData" 
-       class="heatmap-cell"
-       [style.backgroundColor]="getHeatmapColor(day.value)">
-    {{ day.date }}
+<div class="row text-center">
+  <h3>Simple Heatmap</h3>
+</div>
+<div class="row text-center">
+  <div class="year-grid">
+    <div *ngFor="let month of heatmapData" class="month-container">
+      <h4>{{ monthNames[month.month] }}</h4>
+      <div class="month-grid">
+        <div *ngFor="let week of month.data" class="week-row">
+          <div *ngFor="let day of week" class="heatmap-cell" [style.backgroundColor]="getHeatmapColor(day?.value)" (click)="onDayClick(day)">
+            {{ day?.day || '' }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
