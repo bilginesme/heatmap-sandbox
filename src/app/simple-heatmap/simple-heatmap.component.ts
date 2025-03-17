@@ -53,9 +53,10 @@ export class SimpleHeatmapComponent {
       }
 
       months.push({ month, data: monthData });
+
     }
      
-    console.log(months);
+    console.table(months);
     this.heatmapData = months;
   }
 
