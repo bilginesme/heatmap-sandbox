@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CookieStorageService } from '../cookie-storage-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-simple-heatmap',
@@ -25,8 +27,15 @@ export class SimpleHeatmapComponent {
   ];
   */
 
-  constructor() {
+  constructor(
+    private cookieStorage: CookieStorageService,
+    private translate: TranslateService) {
     this.generateYearlyHeatmap(this.year);
+
+    this.translate.setDefaultLang('en');
+    this.cookieTest();
+
+    this.test(2).then(result => console.log('Promise resut = ' + result));
   }
 
 
@@ -57,6 +66,8 @@ export class SimpleHeatmapComponent {
     }
      
     console.table(months);
+
+
     this.heatmapData = months;
   }
 
@@ -73,5 +84,35 @@ export class SimpleHeatmapComponent {
       console.log(`Clicked on day: ${day.day} with value: ${day.value}`);
       alert(`You clicked on ${day.day}, Value: ${day.value}`);
     }
+  }
+
+  private cookieTest(): void {
+  // Store JSON in cookie
+  this.cookieStorage.setJsonCookie('userSettings', { language: "en", theme: "dark" })
+    .then(() => console.log("Cookie saved successfully"));
+
+  // Retrieve JSON from cookie
+  this.cookieStorage.getJsonCookie('userSettings')
+    .then(userSettings => console.log(userSettings));
+
+  // Delete a cookie
+  this.cookieStorage.deleteCookie('userSettings')
+    .then(() => console.log("Cookie deleted successfully"));
+  }
+
+
+  test(param1: number): Promise<number> {
+    return new Promise((resolve) => {
+        let k = 2;
+        let m = 3;
+        let result = k * m;
+
+        resolve(result); // Resolving the computed value
+    });
+  }
+
+  switchLanguage(lang: string) {
+    this.translate.use(lang); // Change language dynamically
+    console.log('the language set to ' + lang);
   }
 }

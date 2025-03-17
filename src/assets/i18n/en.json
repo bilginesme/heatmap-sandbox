@@ -1,0 +1,9 @@
+{
+   "CALENDAR": {
+     "JANUARY": "January",
+     "FEBRUARY": "February",
+     "MARCH": "March",
+     "WEEKDAYS": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+     "TOOLTIP": "Activity on {{date}}"
+   }
+ }

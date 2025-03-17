@@ -1,5 +1,11 @@
 <div class="row text-center">
   <h3>Simple Heatmap</h3>
+  <select (change)="switchLanguage($event.target.value)">
+    <option value="en">English</option>
+    <option value="tr">Türkçe</option>
+    <option value="de">Deutsch</option>
+    <option value="fr">Français</option>
+  </select>
 </div>
 <div class="row text-center">
   <div class="year-grid">
