@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit  } from '@angular/core';
 import { CookieStorageService } from '../cookie-storage-service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./simple-heatmap.component.scss']
 })
 
-export class SimpleHeatmapComponent {
+export class SimpleHeatmapComponent implements AfterViewInit {
   year = 2025; // Example year
   heatmapData: any[] = [];
   monthNames = [
@@ -38,6 +38,9 @@ export class SimpleHeatmapComponent {
     this.test(2).then(result => console.log('Promise resut = ' + result));
   }
 
+  ngAfterViewInit() {
+  
+  }
 
   generateYearlyHeatmap(year: number) {
     const months = [];
@@ -114,5 +117,12 @@ export class SimpleHeatmapComponent {
   switchLanguage(lang: string) {
     this.translate.use(lang); // Change language dynamically
     console.log('the language set to ' + lang);
+
+    this.translate.get('CALENDAR.JANUARY').subscribe((translatedText: string) => {
+      const divElement = document.getElementById('someDiv');
+      if (divElement) {
+        divElement.textContent = translatedText; // Update div content
+      }
+    });
   }
 }

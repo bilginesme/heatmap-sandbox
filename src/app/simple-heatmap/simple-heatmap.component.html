@@ -1,11 +1,19 @@
 <div class="row text-center">
   <h3>Simple Heatmap</h3>
-  <select (change)="switchLanguage($event.target.value)">
+</div>
+<div class="row">
+  <div class="col-4" id="someDiv"></div>
+  <div class="col-4">
+    <select (change)="switchLanguage($event.target.value)">
     <option value="en">English</option>
     <option value="tr">Türkçe</option>
     <option value="de">Deutsch</option>
     <option value="fr">Français</option>
   </select>
+</div>
+  <div class="col-4">
+    <h2>{{ 'CALENDAR.JANUARY' | translate }}</h2>
+  </div>
 </div>
 <div class="row text-center">
   <div class="year-grid">
